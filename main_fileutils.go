@@ -5,7 +5,7 @@ package main
 import (
 	"fmt"
 
-	"./fileutils"
+	"github.com/Nosp1/Is-105/is105-ica03/fileutils"
 )
 
 var pathA = "./files/text1.txt"
