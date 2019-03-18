@@ -6,11 +6,9 @@ import (
 )
 
 type nameAndEmail struct {
-	Name string
+	Name  string
 	Email string
 }
-
-
 
 func handler(c net.Conn, msg nameAndEmail) {
 	response, _ := json.Marshal(msg)
@@ -22,15 +20,17 @@ func handler(c net.Conn, msg nameAndEmail) {
 
 func main() {
 	l, err := net.Listen("tcp", ":5000")
-	if err != nil{
-		panic(err) }
+	if err != nil {
+		panic(err)
+	}
 	response := nameAndEmail{
-		Name: "Bjørnar",
+		Name:  "Bjørnar",
 		Email: "bjørnar@bjørnar.gmail.com"}
 	for {
 		c, err := l.Accept()
-		if err!=nil{
-			continue }
+		if err != nil {
+			continue
+		}
 		go handler(c, response)
 
 	}
