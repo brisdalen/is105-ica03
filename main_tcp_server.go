@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net"
 )
 
@@ -19,7 +20,8 @@ func handler(c net.Conn, msg nameAndEmail) {
 }
 
 func main() {
-	l, err := net.Listen("tcp", ":5000")
+	fmt.Println("Starting server")
+	l, err := net.Listen("tcp", ":8765")
 	if err != nil {
 		panic(err)
 	}
