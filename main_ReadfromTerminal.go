@@ -1,7 +1,6 @@
 package main
-import "./fileinfo"
 
-func main (){
+func main() {
 	fileinfo.FileReader()
 
 }

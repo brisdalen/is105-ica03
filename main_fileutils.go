@@ -3,9 +3,11 @@ package main
 //imports fmt for prints
 //imports fileutils to access fileutils functions.
 import (
-	"./fileutils"
 	"fmt"
+
+	"./fileutils"
 )
+
 var c = "./files/text1.txt"
 var d = "./files/text2.txt"
 var a = fileutils.FileToByteslice(c)
