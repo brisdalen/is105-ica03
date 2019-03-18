@@ -1,20 +1,40 @@
 package main
 
-import "net"
+import(
+	"net"
+	//"fmt"
+	"encoding/json"
+)
 
-func handler(c net.Conn) {
-	c.Write([]byte("ok"))
+type nameAndEmail struct {
+	Name	string
+	Email	string
+}
+
+func handler(c net.Conn, msg nameAndEmail) {
+
+	response, _ := json.Marshal(msg)
+
+	c.Write([]byte(response))
 	c.Close()
 }
 
 func main() {
 	l, err := net.Listen("tcp", ":5000")
-	if err != nil{
-		panic(err) }
+	if err != nil {
+		panic(err)
+	}
+
+	response := nameAndEmail{
+		Name:	"Bjørnar",
+		Email:	"bjørnar@bjørnar.gmail.com"}
+
 	for {
 		c, err := l.Accept()
-		if err!=nil{
-			continue }
-		go handler(c)
+		if err != nil {
+			continue
+		}
+		go handler(c, response)
 	}
+
 }
