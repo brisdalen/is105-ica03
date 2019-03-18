@@ -6,10 +6,10 @@ import (
 	"./fileutils"
 	"fmt"
 )
-var c = "./files/text1.txt"
-var d = "./files/text2.txt"
-var a = fileutils.FileToByteslice(c)
-var b = fileutils.FileToByteslice(d)
+var pathA = "./files/text1.txt"
+var pathB = "./files/text2.txt"
+var a = fileutils.FileToByteslice(pathA)
+var b = fileutils.FileToByteslice(pathB)
 
 func main() {
 	fmt.Print(a)
