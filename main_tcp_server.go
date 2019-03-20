@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net"
+	"bufio"
 )
 
 type nameAndEmail struct {
@@ -37,3 +38,6 @@ func main() {
 
 	}
 }
+
+
+
