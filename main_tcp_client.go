@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	conn, err := net.Dial("tcp", "10.228.37.77:8765")
+	conn, err := net.Dial("tcp", "192.168.43.243:8765")
 	if err != nil {
 		fmt.Println("Error")
 	}
@@ -15,4 +15,5 @@ func main() {
 	fmt.Fprintf(conn, "GET / HTTP/1.0\n\n") // Trengs \r for windows?
 	status, err := bufio.NewReader(conn).ReadString('\n')
 	fmt.Println(status)
+
 }
