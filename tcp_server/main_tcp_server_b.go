@@ -14,11 +14,10 @@ type nameAndEmail struct {
 func handler(c net.Conn, msg nameAndEmail) {
 	response, _ := json.Marshal(msg)
 	c.Write([]byte(response))
-
 	c.Close()
 
 }
-
+// used in 5b and 5c
 func main() {
 	fmt.Println("Starting server")
 	l, err := net.Listen("tcp", ":8765")
@@ -37,6 +36,3 @@ func main() {
 
 	}
 }
-
-
-
