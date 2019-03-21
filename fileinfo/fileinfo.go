@@ -1,4 +1,7 @@
 package fileinfo
+// har laget en fileinfo.go som kan skrive ut innholde i en fil.
+// TODO: lagge filio mappe
+//TODO: oppgave 3: a,b ,c
 
 import (
 	"fmt"
