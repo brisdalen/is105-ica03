@@ -1,29 +1,27 @@
 package main
 
 import (
-	"fmt"
-	"log"
+	"github.com/Nosp1/Is-105/is105-ica03/fileinfo"
 	"os"
 )
 
-var (
-	fileinfo os.FileInfo
-	err	error
-)
 var testRead = "./files/text1.txt"
 var testRead1 = "./files/text2.txt"
-	func main () {
 
-		fileinfo, err = os.Stat("./files/pg100.txt")
-		if err != nil{
-			log.Fatal(err)
+	func main () {
+		if len(os.Args) == 2{
+			//FileReader(os.Args[1])
+			feilmelding := "Du mangler -f"
+			panic(feilmelding)
 		}
-		fmt.Println("File name:", fileinfo.Name())
-		fmt.Println("Size in bytes:", fileinfo.Size())
-		fmt.Println("Permissions:", fileinfo.Mode())
-		fmt.Println("Last modified", fileinfo.ModTime())
-		fmt.Println("Is Directory:", fileinfo.IsDir())
-		fmt.Printf("System interface type: %T\n", fileinfo.Sys())
-		fmt.Printf("System info: %+v\n\n", fileinfo.Sys())
+		if len(os.Args) == 3 {
+			param := os.Args[1]
+
+			if param == "-f" {
+				fileinfo.FileReader(os.Args[2])
+			}
+		}
+
+
 
 	}
