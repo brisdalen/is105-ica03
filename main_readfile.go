@@ -13,6 +13,7 @@ var (
 var testRead = "./files/text1.txt"
 var testRead1 = "./files/text2.txt"
 	func main () {
+
 		fileinfo, err = os.Stat("./files/pg100.txt")
 		if err != nil{
 			log.Fatal(err)
