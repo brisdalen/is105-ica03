@@ -1,19 +1,13 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"net"
+	"../jsonify"
 )
 
-type nameAndEmail struct {
-	Name  string
-	Email string
-}
-
-func handler(c net.Conn, msg nameAndEmail) {
-	response, _ := json.Marshal(msg)
-	c.Write([]byte(response))
+func handler(c net.Conn, msg []byte) {
+	c.Write([]byte(msg))
 	c.Close()
 
 }
@@ -24,9 +18,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	response := nameAndEmail{
-		Name:  "Bjørnar",
-		Email: "bjørnar@bjørnar.gmail.com"}
+	response := jsonify.Encode("bjørnar", "bjørnar@bjørnar.gmail.com")
 	for {
 		c, err := l.Accept()
 		if err != nil {

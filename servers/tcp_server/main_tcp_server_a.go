@@ -10,7 +10,7 @@ func handler(c net.Conn) {
 	c.Close()
 
 }
-
+// used in 5a
 func main() {
 	fmt.Println("Starting server")
 	l, err := net.Listen("tcp", ":8765")
