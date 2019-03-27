@@ -24,3 +24,4 @@ func Encode(name, email string) []byte {
 	}
 	return output
 }
+
