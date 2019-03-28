@@ -1,11 +1,8 @@
 package main
-
+//oppgave 3a
 import (
-	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -14,7 +11,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	r := strings.Reader
-	s := ioutil.ReadAll("test.txt")
-	fmt.Printf("%X", s)
+
 }
