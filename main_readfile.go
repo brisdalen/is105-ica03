@@ -10,9 +10,9 @@ var testRead1 = "./files/text2.txt"
 
 func main() {
 	if len(os.Args) == 2 {
-		//FileReader(os.Args[1])
-		feilmelding := "Du mangler -f"
-		panic(feilmelding)
+		fileinfo.FileReader(os.Args[1])
+		feilMelding := "Du mangler -f"
+		panic(feilMelding)
 	}
 	if len(os.Args) == 3 {
 		param := os.Args[1]
