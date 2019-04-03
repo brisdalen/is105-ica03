@@ -1,9 +1,11 @@
 package main
 
 import (
-	"github.com/Nosp1/Is-105/is105-ica03/frequence"
+	"os"
+
+	"github.com/heiaviking/is-105/is105-ica03/frequence"
 )
 
 func main() {
-	frequence.Bfrequence()
+	frequence.Bfrequence(os.Args[2])
 }
