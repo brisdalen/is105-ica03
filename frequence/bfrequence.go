@@ -7,7 +7,23 @@ import (
 	"os"
 	"sort"
 )
-var text = "./files/pg100.txt"
+
+//var text = "./files/pg100.txt"
+
+func HovedFrequence(name string) {
+	args := os.Args
+
+	if len(args) == 2 {
+		feilmelding := "Du mangler -f"
+		panic(feilmelding)
+	}
+
+	if len(args) == 3 {
+		if args[1] == "-f" {
+			Bfrequence(args[2])
+		}
+	}
+}
 
 func LinesInFile(fileName string) []string {
 	f, _ := os.Open(fileName)
@@ -23,55 +39,40 @@ func LinesInFile(fileName string) []string {
 	return result
 }
 
-func Bfrequence() {
-	//var count int
-	for index, line := range LinesInFile(text) {
+func Bfrequence(fileName string) {
+	for index, line := range LinesInFile(fileName) {
 		fmt.Printf("Index = %v, line = %v\n", index, line)
-		//count = index
 	}
-	//fmt.Printf("Number of lines = %d", count)
 	// Get count of lines.
-	lines := LinesInFile(text)
-	fmt.Println(len(lines))
-
+	lines := LinesInFile(fileName)
+	fmt.Println("Antall linjer: ", len(lines))
 	//Teller runes
 	m := make(map[string]int)
-	input, _ := ioutil.ReadFile(text)
-
+	input, _ := ioutil.ReadFile(fileName)
 	for i := 0; i < len(input); i++ {
 		m[string(input[i])] += 1
 	}
-	//fmt.Println(m)
-
-	//Sorterer runes
-	//var keys []string
-	//for k := range m {
-	//	keys = append(keys, k)
-	//}
-	//sort.Strings(keys)
-
-	//for _, k := range keys {
-	//	fmt.Println("Key:", k, "Value:", m[k])
-	//}
-
-	//Sorterer runes #2
+	//Lager en struct med en key av typen string
+	//og en value av typen int
 	type kv struct {
 		Key   string
 		Value int
 	}
-
+	//Setter variabelen ss til å være en slice av typen k og v
 	var ss []kv
 	for k, v := range m {
 		ss = append(ss, kv{k, v})
 	}
-
+	//Sorterer slicen ss
 	sort.Slice(ss, func(i, j int) bool {
 		return ss[i].Value > ss[j].Value
 	})
-
+	//Oppretter ny variabel "ts" som returnerer de
+	//fem mest brukte "runes" i ss
 	ts := ss[:5]
-
+	//Looper over key-values i ts-slicen.
 	for _, kv := range ts {
+		//Printer ut de fem mest brukte symbolene og antall ganger brukt.
 		fmt.Printf("%q, %d\n", kv.Key, kv.Value)
 	}
 
