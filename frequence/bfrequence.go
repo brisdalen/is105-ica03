@@ -7,6 +7,7 @@ import (
 	"os"
 	"sort"
 )
+var text = "./files/pg100.txt"
 
 func LinesInFile(fileName string) []string {
 	f, _ := os.Open(fileName)
@@ -24,18 +25,18 @@ func LinesInFile(fileName string) []string {
 
 func Bfrequence() {
 	//var count int
-	for index, line := range LinesInFile("pg100.txt") {
+	for index, line := range LinesInFile(text) {
 		fmt.Printf("Index = %v, line = %v\n", index, line)
 		//count = index
 	}
 	//fmt.Printf("Number of lines = %d", count)
 	// Get count of lines.
-	lines := LinesInFile("pg100.txt")
+	lines := LinesInFile(text)
 	fmt.Println(len(lines))
 
 	//Teller runes
 	m := make(map[string]int)
-	input, _ := ioutil.ReadFile("./pg100.txt")
+	input, _ := ioutil.ReadFile(text)
 
 	for i := 0; i < len(input); i++ {
 		m[string(input[i])] += 1
