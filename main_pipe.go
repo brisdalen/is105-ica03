@@ -7,25 +7,22 @@ import (
 	"os"
 )
 
+var nb []byte
+
 func main() {
 	text, err := ioutil.ReadFile("files/pg100.txt")
-
-	ts, _ := os.Stat("files/pg100.txt")
-	size := ts.Size()
+	nb = text[0:100]
 
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
-	if size <= 100000 {
 		PrintValues(text)
-	} else {
-		fmt.Println("The file is currently to large")
-	}
+
 }
 func PrintValues(b []byte) {
-	hex := pipe.HexReturn(string(b))
+	hex := pipe.HexReturn(string(nb))
 	fmt.Println(hex, "\n", "This Hexcode length is ", len(hex), "in bytes", "\n")
 	b64 := pipe.Base64Return(hex)
 	fmt.Println(b64, "\n", "This Base64 length is", len(b64), "in bytes", "\n")
