@@ -1,4 +1,4 @@
-package main
+package fileio
 //oppgave 3a
 import (
 	"log"

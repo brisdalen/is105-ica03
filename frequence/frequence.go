@@ -27,30 +27,7 @@ func Hovedfrequence(fileName string) {
 	}
 }
 
-
-/*
-//func LinesInFile(fileName string) []string {
-//	f, _ := os.Open(fileName)
-//	// Create new Scanner.
-//	scanner := bufio.NewScanner(f)
-	result := []string{}
-	// Use Scan.
-	for scanner.Scan() {
-		line := scanner.Text()
-		// Append line to result.
-		result = append(result, line)
-	}
-	return result
-}
-*/
 func Frequence(fileName string) {
-	//for index, line := range LinesInFile(fileName) {
-	//	fmt.Printf("Index = %v, line = %v\n", index, line)
-	//}
-	// Get count of lines.
-	//lines := LinesInFile(fileName)
-	//fmt.Println("Antall linjer: ", len(lines))
-	//Teller runes
 	file, err := ioutil.ReadFile(fileName)
 	if err !=nil{
 		fmt.Println(err)

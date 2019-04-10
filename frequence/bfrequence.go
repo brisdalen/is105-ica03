@@ -35,7 +35,6 @@ func Bfrequence(fileName string) {
 	// Get count of lines.
 	lines := LinesInFileBuffered(fileName)
 	fmt.Println("Antall linjer: ", len(lines))
-
 	//oppretter scanner
 	input := bufio.NewScanner(f)
 	//splitter scanna runer.
@@ -57,7 +56,7 @@ func Bfrequence(fileName string) {
 	}
 	// sorterer listen
 	sort.Sort(list)
-	fmt.Println("these are the five most used: ")
+	fmt.Println("dette er de fem mest brukte runene: ")
 	counter := 0
 	for _, lf := range list {
 		if counter >= 5 {
