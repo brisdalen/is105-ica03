@@ -7,7 +7,10 @@ import (
 	"sort"
 )
 
-//  hjelpefunksjon for å legge til kommandolinje argument med -f <filnavn>
+/*
+  oppgave 3
+ hjelpefunksjon for å legge til kommandolinje argument med -f <filnavn>
+ */
 func HovedBfrequence(filename string) {
 	args := os.Args
 	// om kommandolinjearugment er for kort kommer feilmelding.

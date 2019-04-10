@@ -9,7 +9,9 @@ import (
 )
 
 
-
+/*
+Oppgave 3
+ */
 func Hovedfrequence(fileName string) {
 	args := os.Args
 
