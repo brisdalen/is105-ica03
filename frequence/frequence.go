@@ -25,6 +25,8 @@ func Hovedfrequence(fileName string) {
 	}
 }
 
+
+
 func LinesInFile(fileName string) []string {
 	f, _ := os.Open(fileName)
 	// Create new Scanner.
