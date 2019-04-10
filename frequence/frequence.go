@@ -1,11 +1,11 @@
 package frequence
 
 import (
-	"bufio"
 	"fmt"
 	"io/ioutil"
 	"os"
 	"sort"
+	"strings"
 )
 
 
@@ -26,11 +26,11 @@ func Hovedfrequence(fileName string) {
 }
 
 
-
-func LinesInFile(fileName string) []string {
-	f, _ := os.Open(fileName)
-	// Create new Scanner.
-	scanner := bufio.NewScanner(f)
+/*
+//func LinesInFile(fileName string) []string {
+//	f, _ := os.Open(fileName)
+//	// Create new Scanner.
+//	scanner := bufio.NewScanner(f)
 	result := []string{}
 	// Use Scan.
 	for scanner.Scan() {
@@ -40,19 +40,34 @@ func LinesInFile(fileName string) []string {
 	}
 	return result
 }
-
+*/
 func Frequence(fileName string) {
-	for index, line := range LinesInFile(fileName) {
-		fmt.Printf("Index = %v, line = %v\n", index, line)
-	}
+	//for index, line := range LinesInFile(fileName) {
+	//	fmt.Printf("Index = %v, line = %v\n", index, line)
+	//}
 	// Get count of lines.
-	lines := LinesInFile(fileName)
-	fmt.Println("Antall linjer: ", len(lines))
+	//lines := LinesInFile(fileName)
+	//fmt.Println("Antall linjer: ", len(lines))
 	//Teller runes
+	file, err := ioutil.ReadFile(fileName)
+	if err !=nil{
+		fmt.Println(err)
+	}
+	lines := strings.Split(string(file), "\n")
+	//kutter ned filen
+	lines = lines [:len(lines)-1]
+	//printer ut alle linjer med index. kommenter ut for renere output.
+	for i, line := range lines{
+		fmt.Println(i,line)
+	}
+	//printer ut total antall linjer i filen
+	fmt.Println(fileName, "inneholder", len(lines), "linjer ")
+	//oppretter map
 	m := make(map[string]int)
-	input, _ := ioutil.ReadFile(fileName)
-	for i := 0; i < len(input); i++ {
-		m[string(input[i])] += 1
+	fmt.Println("dette er de fem mest brukte runene:")
+	//iterer over filen og teller hver rune.
+	for i := 0; i < len(file); i++ {
+		m[string(file[i])] += 1
 	}
 	//Lager en struct med en key av typen string
 	//og en value av typen int
@@ -62,10 +77,11 @@ func Frequence(fileName string) {
 	}
 	//Setter variabelen ss til å være en slice av typen k og v
 	var ss []kv
+	//iterer over map og legger runene inn i ss med k som string verdi for rune og v for int verdi for rune.
 	for k, v := range m {
 		ss = append(ss, kv{k, v})
 	}
-	//Sorterer slicen ss
+	//Sorterer slicen ss etter mest brukte
 	sort.Slice(ss, func(i, j int) bool {
 		return ss[i].Value > ss[j].Value
 	})
