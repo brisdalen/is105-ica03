@@ -8,7 +8,13 @@ import (
 var (
 	fileinfo os.FileInfo
 	err      error
+
 )
+
+
+
+
+
 //this is a function to read files, it takes any kind of string and reads it.
 func FileReader(name string) {
 	args := os.Args
