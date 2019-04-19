@@ -37,4 +37,8 @@ func main() {
 	}
 	fmt.Println(m)
 
+	for key, value := range m {
+		fmt.Printf("Key:%q", key, "Value:", value, "\n")
+	}
+
 }
