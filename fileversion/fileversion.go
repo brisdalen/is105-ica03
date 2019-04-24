@@ -29,5 +29,4 @@ func DontOverrideFileversion(filename string) string {
 	s = s + strconv.Itoa(id) + ".txt"
 	fmt.Println(s)
 	return s
-
 }

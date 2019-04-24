@@ -29,7 +29,7 @@ func HovedBfrequence(filename string) {
 	}
 }
 
-var file string = "​bfrequence_res​ "
+var file string = "​bfrequence_res​1"
 var num string
 var dir = "./frequence/frequenceresults"
 
@@ -72,22 +72,29 @@ func Bfrequence(fileName string) {
 		fmt.Printf("%+q %7d\n", lf.string, lf.freq)
 		counter++
 	}
-	write, err := os.Create(filepath.Join(dir, filepath.Base(fileversion.DontOverrideFileversion(file))))
-	if err != nil {
-		panic(err)
+	if _, err := os.Stat("./../frequence/frequenceresults/bfrequence_res1.txt"); err == nil {
+		write, err := os.Create(filepath.Join(dir, filepath.Base(fileversion.DontOverrideFileversion(file))))
+		if err != nil {
+			panic(err)
+		}
+		defer write.Close()
+		metodeSomSkriverInnhold()
+	} else if {
+		// Filen finnes ikke
+		// Lag bfrequence_res1.txt
+		metodeSomSkriveInnhold()
 	}
-	defer write.Close()
-	w := bufio.NewWriter(write)
-	fmt.Println("Writing to file" )
-	fmt.Fprintln(w, "Bfrequence resultat: ")
-	fmt.Fprint(w, "De mest brukte filene er ")
-	for i := 0; i < 5; i ++ {
-		_, err = fmt.Fprintf(w, "\n%+q %7d\n", list[i].string, list[i].freq)
+		w := bufio.NewWriter(write)
+		fmt.Println("Writing to file")
+		fmt.Fprintln(w, "Bfrequence resultat: ")
+		fmt.Fprint(w, "De mest brukte filene er ")
+		for i := 0; i < 5; i ++ {
+			_, err = fmt.Fprintf(w, "\n%+q %7d\n", list[i].string, list[i].freq)
+		}
+		_, err = fmt.Fprintf(w, "\nAntall linjer: %v", len(lines))
+		w.Flush()
+		fmt.Println("Writing to file is complete. ")
 	}
-	_, err = fmt.Fprintf(w, "\nAntall linjer: %v", len(lines))
-	w.Flush()
-	fmt.Println("Writing to file is complete. ")
-}
 
 type letterFreq struct {
 	string
