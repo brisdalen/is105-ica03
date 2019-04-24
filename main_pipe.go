@@ -18,10 +18,6 @@ func main() {
 		os.Exit(1)
 	}
 
-		PrintValues(text)
-
-}
-func PrintValues(b []byte) {
 	hex := pipe.HexReturn(string(nb))
 	fmt.Println(hex, "\n", "This Hexcode length is ", len(hex), "in bytes", "\n")
 	b64 := pipe.Base64Return(hex)
@@ -29,3 +25,4 @@ func PrintValues(b []byte) {
 	gzip := pipe.GZipReturn(b64)
 	fmt.Println(gzip, "\n", "This GZIP length is", len(gzip), "in bytes")
 }
+
