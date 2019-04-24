@@ -3,7 +3,7 @@ package frequence
 import (
 	"bufio"
 	"fmt"
-	"github.com/brisdalen/skole/is105-ica03/fileversion"
+	"github.com/Nosp1/Is-105/is105-ica03/fileversion"
 	//"github.com/go-delve/delve/pkg/dwarf/line"
 	"os"
 	//"path/filepath"
