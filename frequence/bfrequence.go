@@ -3,14 +3,16 @@ package frequence
 import (
 	"bufio"
 	"fmt"
+	_ "github.com/go-delve/delve/pkg/dwarf/line"
 	"os"
+	"path/filepath"
 	"sort"
 )
 
 /*
   oppgave 3
  hjelpefunksjon for å legge til kommandolinje argument med -f <filnavn>
- */
+*/
 func HovedBfrequence(filename string) {
 	args := os.Args
 	// om kommandolinjearugment er for kort kommer feilmelding.
@@ -25,6 +27,10 @@ func HovedBfrequence(filename string) {
 		}
 	}
 }
+
+var file string = "​bfrequence_res​"
+var num string = "1"
+var dir = "./frequence/frequenceresults"
 
 // buffered filereader. Tar in filenavn, teller linjer med hjelpe funksjonen LinesinFilebuffered.
 func Bfrequence(fileName string) {
@@ -65,6 +71,26 @@ func Bfrequence(fileName string) {
 		fmt.Printf("%+q %7d\n", lf.string, lf.freq)
 		counter++
 	}
+	write, err := os.Create(filepath.Join(dir, filepath.Base(file+num+".txt")))
+	if err != nil {
+		panic(err)
+	}
+	defer write.Close()
+	w := bufio.NewWriter(write)
+	fmt.Println("Writing to file" + file + num)
+	fmt.Fprintln(w, "Bfrequence resultat: ")
+	fmt.Fprint(w, "De mest brukte filene er ")
+	for i := 0; i < 5; i ++ {
+		_, err = fmt.Fprintf(w, "\n%+q %7d\n", list[i].string, list[i].freq)
+	}
+	_, err = fmt.Fprintf(w, "\nAntall linjer: %v", len(lines))
+	w.Flush()
+	fmt.Println("Writing to file is complete. ")
+	//for _, line := range list{
+	//	if _, err := write.WriteString(line.string); err != nil {
+	//		panic(err)
+	//	}
+	//}
 }
 
 type letterFreq struct {
@@ -89,7 +115,7 @@ func (list lflist) Swap(i, j int) {
 	list[i], list[j] = list[j], list[i]
 }
 
-func LinesInFileBuffered(fileName string) ([]string) {
+func LinesInFileBuffered(fileName string) []string {
 	f, _ := os.Open(fileName)
 	// Create new Scanner.
 	scanner := bufio.NewScanner(f)
