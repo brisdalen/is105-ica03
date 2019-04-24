@@ -3,9 +3,10 @@ package frequence
 import (
 	"bufio"
 	"fmt"
-	_ "github.com/go-delve/delve/pkg/dwarf/line"
+	"github.com/brisdalen/skole/is105-ica03/fileversion"
+	//"github.com/go-delve/delve/pkg/dwarf/line"
 	"os"
-	"path/filepath"
+	//"path/filepath"
 	"sort"
 )
 
@@ -28,8 +29,8 @@ func HovedBfrequence(filename string) {
 	}
 }
 
-var file string = "​bfrequence_res​"
-var num string = "1"
+var path string = "./frequence/frequenceresults/bfrequence_res1.txt"
+var file string = "​bfrequence_res​1"
 var dir = "./frequence/frequenceresults"
 
 // buffered filereader. Tar in filenavn, teller linjer med hjelpe funksjonen LinesinFilebuffered.
@@ -71,13 +72,30 @@ func Bfrequence(fileName string) {
 		fmt.Printf("%+q %7d\n", lf.string, lf.freq)
 		counter++
 	}
-	write, err := os.Create(filepath.Join(dir, filepath.Base(file+num+".txt")))
+	// Filen finnes alt
+	_, err := os.Stat(path)
+	fmt.Println(err)
+	if err == nil {
+		WriteToFile(fileversion.DontOverrideFileversion(path), list, lines)
+		fmt.Println("Finnes")
+		// Filen finnes ikke
+	}
+	if err != nil {
+		// Lager ny(?)
+		WriteToFile(path, list, lines)
+		fmt.Println("Finnes ikke, lager ny")
+	}
+}
+
+func WriteToFile(filepath string, list lflist, lines []string) string {
+	write, err := os.Create(filepath)
 	if err != nil {
 		panic(err)
 	}
 	defer write.Close()
+
 	w := bufio.NewWriter(write)
-	fmt.Println("Writing to file" + file + num)
+	fmt.Println("Writing to file")
 	fmt.Fprintln(w, "Bfrequence resultat: ")
 	fmt.Fprint(w, "De mest brukte filene er ")
 	for i := 0; i < 5; i ++ {
@@ -86,11 +104,8 @@ func Bfrequence(fileName string) {
 	_, err = fmt.Fprintf(w, "\nAntall linjer: %v", len(lines))
 	w.Flush()
 	fmt.Println("Writing to file is complete. ")
-	//for _, line := range list{
-	//	if _, err := write.WriteString(line.string); err != nil {
-	//		panic(err)
-	//	}
-	//}
+
+	return "sucess!"
 }
 
 type letterFreq struct {

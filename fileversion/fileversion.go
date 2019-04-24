@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"unicode"
 )
+
 /**
 	Lager nytt filnavn med nytt nummer.
 	Funksjonen antar at .txt er i bruk.
@@ -35,10 +36,9 @@ func DebugDontOverrideFileversion(filename string) string {
 	var id int
 
 	fmt.Println(len(s))
+
 	for i := len(s); i > 0; i-- {
-		fmt.Println(i)
 		if unicode.IsLetter(rune(s[i-1])) {
-			fmt.Println("Found!", i)
 			id, _ = strconv.Atoi(s[i:])
 			s = s[:i]
 			break
@@ -47,6 +47,7 @@ func DebugDontOverrideFileversion(filename string) string {
 
 	id++
 	s = s + strconv.Itoa(id) + ".txt"
+	fmt.Println(s)
 	return s
 }
 
