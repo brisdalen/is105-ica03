@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/brisdalen/skole/is105-ica03/frequence"
+	"./frequence"
 	"os"
 )
 

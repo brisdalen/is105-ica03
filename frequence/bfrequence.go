@@ -3,7 +3,7 @@ package frequence
 import (
 	"bufio"
 	"fmt"
-	"github.com/brisdalen/skole/is105-ica03/fileversion"
+	"../fileversion"
 	"os"
 	"sort"
 )
@@ -23,11 +23,12 @@ func HovedBfrequence(filename string) {
 	if len(args) == 3 {
 		if args[1] == "-f" {
 			Bfrequence(args[2])
+			path = args[2]
 		}
 	}
 }
 
-var path string = "./frequence/frequenceresults/bfrequence_res1.txt"
+var path string
 var file string = "​bfrequence_res​1"
 var dir = "./frequence/frequenceresults"
 
@@ -37,6 +38,7 @@ func Bfrequence(fileName string) {
 	for index, line := range LinesInFileBuffered(fileName) {
 		fmt.Printf("Index = %v, line = %v\n", index, line)
 	}
+	defer f.Close()
 	// Get count of lines.
 	lines := LinesInFileBuffered(fileName)
 	fmt.Println("Antall linjer: ", len(lines))
@@ -80,8 +82,9 @@ func Bfrequence(fileName string) {
 	}
 	if err != nil {
 		// Lager ny(?)
-		WriteToFile(path, list, lines)
-		fmt.Println("Finnes ikke, lager ny")
+			WriteToFile(path, list, lines)
+			fmt.Println("Finnes ikke, lager ny")
+
 	}
 }
 
