@@ -3,12 +3,18 @@ package frequence
 import (
 	"bufio"
 	"fmt"
-	"github.com/Nosp1/Is-105/is105-ica03/fileversion"
-	//"github.com/go-delve/delve/pkg/dwarf/line"
+	"../fileversion"
 	"os"
-	//"path/filepath"
 	"sort"
+	"io/ioutil"
+	"strconv"
+	//"path/filepath"
 )
+
+var path string
+var dirEntries []os.FileInfo
+var fileBase string = "​bfrequence_res"
+var dir = "./frequence/frequenceresults/"
 
 /*
   oppgave 3
@@ -24,21 +30,19 @@ func HovedBfrequence(filename string) {
 	// om lengden på argumentene i kommandolinje er  3 og posisjon 1 har "-f" så kjører Befrequence.
 	if len(args) == 3 {
 		if args[1] == "-f" {
+			dirEntries, _ = ioutil.ReadDir(dir)
+			path = dir + fileBase + strconv.Itoa(len(dirEntries)) + ".txt"
 			Bfrequence(args[2])
-			path = args[2]
 		}
 	}
 }
-
-var path string
-var file string = "​bfrequence_res​1"
-var dir = "./frequence/frequenceresults"
 
 // buffered filereader. Tar in filenavn, teller linjer med hjelpe funksjonen LinesinFilebuffered.
 func Bfrequence(fileName string) {
 	f, _ := os.Open(fileName)
 	for index, line := range LinesInFileBuffered(fileName) {
-		fmt.Printf("Index = %v, line = %v\n", index, line)
+		// HUSK Å ENDRE TILBAKE SEINERE
+		fmt.Sprintf("Index = %v, line = %v\n", index, line)
 	}
 	defer f.Close()
 	// Get count of lines.
@@ -74,19 +78,25 @@ func Bfrequence(fileName string) {
 		fmt.Printf("%+q %7d\n", lf.string, lf.freq)
 		counter++
 	}
+
+	fmt.Println(dir)
+	fmt.Println(fileBase)
+	fmt.Println(strconv.Itoa(len(dirEntries)))
+
+	fmt.Println(path)
+
 	// Filen finnes alt
 	_, err := os.Stat(path)
 	fmt.Println(err)
 	if err == nil {
 		WriteToFile(fileversion.DontOverrideFileversion(path), list, lines)
 		fmt.Println("Finnes")
-		// Filen finnes ikke
 	}
+	// Filen finnes ikke
 	if err != nil {
 		// Lager ny(?)
 			WriteToFile(path, list, lines)
 			fmt.Println("Finnes ikke, lager ny")
-
 	}
 }
 
