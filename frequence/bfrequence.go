@@ -3,7 +3,7 @@ package frequence
 import (
 	"bufio"
 	"fmt"
-	"../fileversion"
+	"github.com/Nosp1/Is-105/is105-ica03/fileversion"
 	"os"
 	"sort"
 	"io/ioutil"
@@ -14,10 +14,10 @@ import (
 var path string
 var dirEntries []os.FileInfo
 var fileBase string = "​bfrequence_res"
-var dir = "./frequence/frequenceresults/"
+var dir = "./frequence/bfrequenceresults/"
 
 /*
-  oppgave 3
+  oppgave 3c
  hjelpefunksjon for å legge til kommandolinje argument med -f <filnavn>
 */
 func HovedBfrequence(filename string) {
@@ -78,29 +78,22 @@ func Bfrequence(fileName string) {
 		fmt.Printf("%+q %7d\n", lf.string, lf.freq)
 		counter++
 	}
-
-	fmt.Println(dir)
-	fmt.Println(fileBase)
-	fmt.Println(strconv.Itoa(len(dirEntries)))
-
-	fmt.Println(path)
-
 	// Filen finnes alt
 	_, err := os.Stat(path)
-	fmt.Println(err)
+
 	if err == nil {
-		WriteToFile(fileversion.DontOverrideFileversion(path), list, lines)
-		fmt.Println("Finnes")
+		writeToFile(fileversion.DontOverrideFileversion(path), list, lines)
+
 	}
 	// Filen finnes ikke
 	if err != nil {
 		// Lager ny(?)
-			WriteToFile(path, list, lines)
-			fmt.Println("Finnes ikke, lager ny")
+			writeToFile(path, list, lines)
+
 	}
 }
 
-func WriteToFile(filepath string, list lflist, lines []string) string {
+func writeToFile(filepath string, list lflist, lines []string) string {
 	write, err := os.Create(filepath)
 	if err != nil {
 		panic(err)
