@@ -3,14 +3,23 @@ package frequence
 import (
 	"bufio"
 	"fmt"
+	"../fileversion"
 	"os"
 	"sort"
+	"io/ioutil"
+	"strconv"
+	//"path/filepath"
 )
+
+var path string
+var dirEntries []os.FileInfo
+var fileBase string = "​bfrequence_res"
+var dir = "./frequence/frequenceresults/"
 
 /*
   oppgave 3
  hjelpefunksjon for å legge til kommandolinje argument med -f <filnavn>
- */
+*/
 func HovedBfrequence(filename string) {
 	args := os.Args
 	// om kommandolinjearugment er for kort kommer feilmelding.
@@ -21,6 +30,8 @@ func HovedBfrequence(filename string) {
 	// om lengden på argumentene i kommandolinje er  3 og posisjon 1 har "-f" så kjører Befrequence.
 	if len(args) == 3 {
 		if args[1] == "-f" {
+			dirEntries, _ = ioutil.ReadDir(dir)
+			path = dir + fileBase + strconv.Itoa(len(dirEntries)) + ".txt"
 			Bfrequence(args[2])
 		}
 	}
@@ -30,8 +41,10 @@ func HovedBfrequence(filename string) {
 func Bfrequence(fileName string) {
 	f, _ := os.Open(fileName)
 	for index, line := range LinesInFileBuffered(fileName) {
-		fmt.Printf("Index = %v, line = %v\n", index, line)
+		// HUSK Å ENDRE TILBAKE SEINERE
+		fmt.Sprintf("Index = %v, line = %v\n", index, line)
 	}
+	defer f.Close()
 	// Get count of lines.
 	lines := LinesInFileBuffered(fileName)
 	fmt.Println("Antall linjer: ", len(lines))
@@ -65,6 +78,47 @@ func Bfrequence(fileName string) {
 		fmt.Printf("%+q %7d\n", lf.string, lf.freq)
 		counter++
 	}
+
+	fmt.Println(dir)
+	fmt.Println(fileBase)
+	fmt.Println(strconv.Itoa(len(dirEntries)))
+
+	fmt.Println(path)
+
+	// Filen finnes alt
+	_, err := os.Stat(path)
+	fmt.Println(err)
+	if err == nil {
+		WriteToFile(fileversion.DontOverrideFileversion(path), list, lines)
+		fmt.Println("Finnes")
+	}
+	// Filen finnes ikke
+	if err != nil {
+		// Lager ny(?)
+			WriteToFile(path, list, lines)
+			fmt.Println("Finnes ikke, lager ny")
+	}
+}
+
+func WriteToFile(filepath string, list lflist, lines []string) string {
+	write, err := os.Create(filepath)
+	if err != nil {
+		panic(err)
+	}
+	defer write.Close()
+
+	w := bufio.NewWriter(write)
+	fmt.Println("Writing to file")
+	fmt.Fprintln(w, "Bfrequence resultat: ")
+	fmt.Fprint(w, "De mest brukte filene er ")
+	for i := 0; i < 5; i ++ {
+		_, err = fmt.Fprintf(w, "\n%+q %7d\n", list[i].string, list[i].freq)
+	}
+	_, err = fmt.Fprintf(w, "\nAntall linjer: %v", len(lines))
+	w.Flush()
+	fmt.Println("Writing to file is complete. ")
+
+	return "sucess!"
 }
 
 type letterFreq struct {
@@ -89,7 +143,7 @@ func (list lflist) Swap(i, j int) {
 	list[i], list[j] = list[j], list[i]
 }
 
-func LinesInFileBuffered(fileName string) ([]string) {
+func LinesInFileBuffered(fileName string) []string {
 	f, _ := os.Open(fileName)
 	// Create new Scanner.
 	scanner := bufio.NewScanner(f)
