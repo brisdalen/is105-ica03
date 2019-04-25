@@ -5,16 +5,24 @@ import (
 	"bytes"
 	"compress/gzip"
 	"encoding/base64"
+	"encoding/hex"
 	"fmt"
 	"log"
 )
 
 func HexReturn(s string) string {
-	return fmt.Sprintf("%X", s)
+	txt := []byte(s)
+	dst := make([]byte, hex.EncodedLen(len(txt)))
+	hex.Encode(dst, txt)
+	return fmt.Sprintf("%s", dst)
 }
 
 func Base64Return(s string) string {
-	return fmt.Sprintln(base64.StdEncoding.EncodeToString([]byte(s)))
+	b64 := base64.StdEncoding.EncodeToString([]byte(s))
+	txt := []byte(b64)
+	dst := make([]byte, hex.EncodedLen(len(txt)))
+	hex.Encode(txt, dst)
+	return fmt.Sprintf("%s", dst)
 }
 
 func GZipReturn(s string) string {

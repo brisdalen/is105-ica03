@@ -11,18 +11,23 @@ var nb []byte
 
 func main() {
 	text, err := ioutil.ReadFile("files/pg100.txt")
-	nb = text[0:100]
+	nb = text[0:1000]
 
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
+
+	PrintValues(text)
+
+}
+func PrintValues(b []byte) {
 	hex := pipe.HexReturn(string(nb))
-	fmt.Println(hex, "\n", "This Hexcode length is ", len(hex), "in bytes", "\n")
+	fmt.Println( "\n", "This Hexcode length is ", len(hex), "in bytes", "\n")
 	b64 := pipe.Base64Return(hex)
-	fmt.Println(b64, "\n", "This Base64 length is", len(b64), "in bytes", "\n")
-	gzip := pipe.GZipReturn(b64)
-	fmt.Println(gzip, "\n", "This GZIP length is", len(gzip), "in bytes")
+	fmt.Println( "\n", "This Base64 length is", len(b64), "in bytes", "\n")
+	//gzip := pipe.GZipReturn(b64)
+	//fmt.Println(len(nb), "\n", "This GZIP length is", len(gzip), "in bytes")
 }
 

@@ -18,7 +18,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	response := jsonify.Encode("bjørnar", "bjørnar@bjørnar.gmail.com")
+	response := jsonify.Encode("Henrik", "henros1996@gmail.com")
 	for {
 		c, err := l.Accept()
 		if err != nil {
