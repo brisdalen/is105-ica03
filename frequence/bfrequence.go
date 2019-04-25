@@ -4,9 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"github.com/brisdalen/skole/is105-ica03/fileversion"
-	//"github.com/go-delve/delve/pkg/dwarf/line"
 	"os"
-	//"path/filepath"
 	"sort"
 )
 
