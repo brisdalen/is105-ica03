@@ -18,13 +18,11 @@ func HexReturn(s string) string {
 }
 
 func Base64Return(s string) string {
-	b64 := base64.StdEncoding.EncodeToString([]byte(s))
-	txt := []byte(b64)
-	dst := make([]byte, hex.EncodedLen(len(txt)))
-	hex.Encode(txt, dst)
-	return fmt.Sprintf("%s", dst)
+	data, _ := hex.DecodeString(s)
+	b64 := base64.StdEncoding.EncodeToString(data)
+	fmt.Println("This Base64 length is", len(b64), "in bytes")
+	return fmt.Sprintf(HexReturn(b64))
 }
-
 func GZipReturn(s string) string {
 	var buffer bytes.Buffer
 	gZipWriter := gzip.NewWriter(&buffer)
