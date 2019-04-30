@@ -23,6 +23,7 @@ func Base64Return(s string) string {
 	fmt.Println("This Base64 length is", len(b64), "in bytes")
 	return fmt.Sprintf(HexReturn(b64))
 }
+
 func GZipReturn(s string) string {
 	var buffer bytes.Buffer
 	gZipWriter := gzip.NewWriter(&buffer)

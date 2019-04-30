@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/Henrikohlsen/Is-105/is105-ica03/pipe"
+	"./pipe"
 	"io/ioutil"
 	"os"
 )
