@@ -25,20 +25,22 @@ func main() {
 	gz := gzip.GZipReturnBytes(b)
 	result := hex.HexReturnBytes(gz)
 
-	i1 := len(x)
-	i2 := len(result)
+	i1 := len(file)
+	i2 := len(gz)
 
-	LimitPrintln(x, 10, " - hexx")
-	LimitPrintln(b, 10, "- base64")
-	LimitPrintln(gz, 10, "- gzip")
-	LimitPrintln(result, 10, "- base64 + gzip in hex")
+	LimitPrintln(file, 10, " - Original text")
+	LimitPrintln(gz, 10, "- Gzip")
+	LimitPrintln(x, 10, " - Hex")
+	LimitPrintln(result, 10, "- Result in hex")
+	LimitPrintln(b, 10, "- In Base64")
 
 	fmt.Println("-------------------------------------------------------------")
 
+	fmt.Println(len(file), ": The original file length")
+	fmt.Println(len(gz), ": Length of the input file after base64 encoding and gzip compression")
 	fmt.Println(len(x), ": Original length in hex-encoding")
-	fmt.Println(len(b), ": Length of the input file in base64-encoding")
-	fmt.Println(len(gz), ": Length of the input file after base64- and gzip-encoding")
 	fmt.Println(len(result), ": Length of input after pipe in hex-encoding")
+	fmt.Println(len(b), ": Length of the input file in base64-encoding")
 
 	fmt.Println("-------------------------------------------------------------")
 
