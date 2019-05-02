@@ -26,8 +26,7 @@ func main() {
 	result := hex.HexReturnBytes(gz)
 
 	i1 := len(x)
-	i2 := len(b)
-	i3 := len(gz)
+	i2 := len(result)
 
 	LimitPrintln(x, 10, " - hexx")
 	LimitPrintln(b, 10, "- base64")
@@ -43,8 +42,7 @@ func main() {
 
 	fmt.Println("-------------------------------------------------------------")
 
-	fmt.Println("The Base64 Compression rate is : ", CompressionRatio(i1, i2), " %")
-	fmt.Println("The Gzip Compression rate is : ",  CompressionRatio(i1, i3), " %")
+	fmt.Println("The Compression rate is : ", CompressionRatio(i1, i2), " %")
 
 }
 
