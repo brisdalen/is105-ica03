@@ -14,7 +14,7 @@ func HexReturn(s string) string {
 
 func HexReturnBytes(b []byte) []byte {
 	txt := b
-	dst := make([]byte, hex.EncodedLen(len(txt)))
-	hex.Encode(dst, txt)
-	return dst
+	dest := make([]byte, hex.EncodedLen(len(txt)))
+	hex.Encode(dest, txt)
+	return dest
 }
