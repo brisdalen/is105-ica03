@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func main() {
+func WriteBytesToFile() {
 	// Open a new file for writing only
 	file, err := os.OpenFile(
 		"test.txt",
@@ -25,3 +25,4 @@ func main() {
 	}
 	log.Printf("Wrote %d bytes.\n", bytesWritten)
 }
+
