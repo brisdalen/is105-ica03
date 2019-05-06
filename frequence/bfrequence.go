@@ -95,7 +95,7 @@ func writeToFile(filepath string, list lflist, lines []string) string {
 	defer write.Close()
 
 	w := bufio.NewWriter(write)
-	fmt.Println("Writing to file")
+	fmt.Println("Writing results to file")
 	fmt.Fprintln(w, "Bfrequence resultat: ")
 	fmt.Fprint(w, "De mest brukte filene er ")
 	for i := 0; i < 5; i ++ {
