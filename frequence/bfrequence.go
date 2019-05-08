@@ -32,7 +32,7 @@ func Bfrequence(fileName string) {
 
 	f, _ := os.Open(fileName)
 	for index, line := range LinesInFileBuffered(fileName) {
-		// HUSK Å ENDRE TILBAKE SEINERE
+		//Endre SprintF  til PrintF for å printe ut innholdet i fil med nummerering.
 		fmt.Sprintf("Index = %v, line = %v\n", index, line)
 	}
 	defer f.Close()
