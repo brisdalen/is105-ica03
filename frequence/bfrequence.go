@@ -31,10 +31,10 @@ func Bfrequence(fileName string) {
 	path = dir + fileBase + strconv.Itoa(len(dirEntries)) + ".txt"
 
 	f, _ := os.Open(fileName)
-	for index, line := range LinesInFileBuffered(fileName) {
-		//Endre SprintF  til PrintF for å printe ut innholdet i fil med nummerering.
-		fmt.Sprintf("Index = %v, line = %v\n", index, line)
-	}
+	//for index, line := range LinesInFileBuffered(fileName) {
+
+		//fmt.Sprintf("Index = %v, line = %v\n", index, line)
+	//}
 	defer f.Close()
 	// Get count of lines.
 	lines := LinesInFileBuffered(fileName)
@@ -153,10 +153,10 @@ for å lettere kunne kjøre benchmarks.
  */
 func BfrequenceForBench(fileName string) {
 	f, _ := os.Open(fileName)
-	for index, line := range LinesInFileBuffered(fileName) {
-		// HUSK Å ENDRE TILBAKE SEINERE
-		fmt.Sprintf("Index = %v, line = %v\n", index, line)
-	}
+	//for index, line := range LinesInFileBuffered(fileName) {
+
+	//	fmt.Sprintf("Index = %v, line = %v\n", index, line)
+	//}
 	defer f.Close()
 	// Get count of lines.
 	lines := LinesInFileBuffered(fileName)
