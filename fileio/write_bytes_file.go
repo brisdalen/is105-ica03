@@ -15,7 +15,7 @@ func WriteBytesToFile() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer file.Close()
+	defer  file.Close()
 
 	//Write bytes to file
 	byteSlice := []byte("Bytes!\n")
