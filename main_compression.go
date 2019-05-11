@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"./pipe/b64"
-	"./pipe/gzip"
-	"./pipe/hex"
+	"github.com/Nosp1/Is-105/is105-ica03/pipe/b64"
+	"github.com/Nosp1/Is-105/is105-ica03/pipe/gzip"
+	"github.com/Nosp1/Is-105/is105-ica03/pipe/hex"
 	"io/ioutil"
 	"os"
 )

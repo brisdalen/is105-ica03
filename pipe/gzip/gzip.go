@@ -3,7 +3,6 @@ package gzip
 import (
 	"bytes"
 	"compress/gzip"
-	"fmt"
 	"log"
 )
 
@@ -21,7 +20,7 @@ func GZipReturn(s string) string {
 		log.Fatal(err)
 	}
 
-	return fmt.Sprintf(buffer)
+	return buffer.String()
 }
 
 func GZipReturnBytes(b []byte) []byte {

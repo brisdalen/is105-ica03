@@ -9,7 +9,6 @@ import (
 func Base64Return(s string) string {
 	data, _ := hex.DecodeString(s)
 	b64 := base64.StdEncoding.EncodeToString(data)
-	//fmt.Println("This Base64 length is", len(b64), "in bytes")
 	return fmt.Sprintf(b64)
 }
 

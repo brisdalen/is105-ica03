@@ -1,5 +1,5 @@
 Bfrequence resultat: 
-De mest brukte filene er 
+De mest brukte runene er: 
 " " 1285884
 
 "e"  406157
