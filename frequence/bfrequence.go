@@ -3,12 +3,12 @@ package frequence
 import (
 	"bufio"
 	"fmt"
-	"github.com/Nosp1/Is-105/is105-ica03/fileversion"
 	"os"
 	"sort"
 	"io/ioutil"
 	"strconv"
 	//"path/filepath"
+	"../fileversion"
 )
 
 var path string

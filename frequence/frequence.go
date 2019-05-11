@@ -2,13 +2,14 @@ package frequence
 
 import (
 	"fmt"
-	"github.com/Nosp1/Is-105/is105-ica03/fileversion"
+	"../fileversion"
 	"io/ioutil"
 	"os"
 	"sort"
 	"strconv"
 	"strings"
 )
+
 var filebaseFreq string = "frequence_res"
 var dirFreq = "./frequence/frequenceresults/"
 var dirEntriesFreq []os.FileInfo

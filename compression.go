@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/brisdalen/skole/is105-ica03/pipe/b64"
-	"github.com/brisdalen/skole/is105-ica03/pipe/gzip"
-	"github.com/brisdalen/skole/is105-ica03/pipe/hex"
+	"./pipe/b64"
+	"./pipe/gzip"
+	"./pipe/hex"
 	"io/ioutil"
 	"os"
 )
@@ -25,7 +25,7 @@ func main() {
 	gz := gzip.GZipReturnBytes(b)
 	result := hex.HexReturnBytes(gz)
 
-	LimitPrintln(x, 10, " - hexx")
+	LimitPrintln(x, 10, " - hex")
 	LimitPrintln(b, 10, "- base64")
 	LimitPrintln(gz, 10, "- gzip")
 	LimitPrintln(result, 10, "- base64 + gzip in hex")
